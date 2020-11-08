@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
-
-int MAX;
+#define MAX 4
 
 int matA[MAX][MAX]; 
 int matB[MAX][MAX]; 
@@ -71,12 +70,13 @@ void* computeProduct(void* args) { // pass in the number of the ith thread
 // Spawn a thread to fill each cell in each result matrix.
 // How many threads will you spawn?
 int main(int argc, char *argv[]) {
-     
+    //int max;
     srand(time(0));  // Do Not Remove. Just ignore and continue below.
     
     // 0. Get the matrix size from the command line and assign it to MAX
-    printf("Enter a matrix size.\n");
-    scanf("%d",&MAX);
+    //printf("Enter a matrix size.\n");
+    //canf("%d",&max);
+    //MAX = max;
     // 1. Fill the matrices (matA and matB) with random values.
     fillMatrix(matA);
     fillMatrix(matB);

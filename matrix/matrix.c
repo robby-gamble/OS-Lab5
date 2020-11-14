@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
-#define MAX 4
+#define MAX 3
 
 int matA[MAX][MAX]; 
 int matB[MAX][MAX]; 
@@ -41,6 +41,7 @@ void* computeSum(void* args) { // pass in the number of the ith thread
    int *index = (int*) args;
    int x = (*index)/MAX;
    int y = (*index)%MAX;
+   
   
    matSumResult[x][y] = matA[x][y] +matB[x][y];
 }
@@ -64,7 +65,10 @@ void* computeProduct(void* args) { // pass in the number of the ith thread
   int x = (*index)/MAX;
   int y = (*index)%MAX;
   
-  matProductResult[x][y] = matA[x][y] * matB[x][y];
+  for(int i = 0; i<MAX; i++){
+    matProductResult[x][y] += matA[x][i] * matB[i][y];
+  }
+
 }
 
 // Spawn a thread to fill each cell in each result matrix.
